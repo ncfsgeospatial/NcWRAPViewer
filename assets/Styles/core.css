@@ -1,0 +1,68 @@
+﻿body {
+    padding-top: 180px;
+}
+
+
+.ags-basemap-toolbar{
+    position:absolute;
+    right:20px;
+    top:10px;
+    z-Index:2;
+    font-size:x-small
+}
+
+.ags-button {
+
+    height: 40px;
+    width: 40px;
+
+}
+
+.ags-button img {
+    width: 24px;
+}
+
+.ags-template {
+    display: none;
+}
+
+
+.ags-panel{
+    display:none;    
+}
+
+.ags-color-picker-sq
+{
+    width:20px;
+    height:20px;
+}
+
+.ags-draw-editor{
+
+}
+
+.ags-panel-details{
+    font-size: x-small;    
+}
+
+
+.ags-details-layer-label
+{
+    font-weight:bold;
+    display:none;
+}
+
+.ags-details-label
+{
+    font-weight:bold;
+}
+
+.ags-details-value
+{
+font-style:italic;
+}
+
+
+.right{
+    text-align:right
+}

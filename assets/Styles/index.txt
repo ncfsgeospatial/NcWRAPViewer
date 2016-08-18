@@ -1,0 +1,182 @@
+<%@ Page Title="FPPT" Language="C#" MasterPageFile="~/fppt/NoMap.master" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
+</asp:Content>
+
+<asp:Content runat="server" ContentPlaceHolderID="nonaspxpages">
+   
+    <h2 id="tract"><img src="images/glass.jpg" width="150px" height="150px"/>Find Tract</h2>
+
+    <div id="article">
+	    <div id="new">
+	        <button  id="newbutton" class="tbutton" onclick="showNewOp();">Start a New Tract</button>
+	    </div>
+	
+	    <div id="new2">
+	        <h2>Start a New Tract</h2>
+	
+	        <p>Have an ArcGIS Shapefile of the Tract Boundary?<br/>
+	        <button id="upload" type="submit" class="obutton">Upload Shapefile and Zoom to Tract</button></p>
+	
+	        <p class="floatL">Know the Address or Town Name?<br/>
+	        <button id="place" type="submit" class="obutton" >Search By Address or Place Name</button></p>
+	
+	        <p class="floatR">Know the County and Owner's Name?<br/>
+	        <button id="owner" type="submit" class="obutton">Search By County and Owner Name</button></p>
+	
+	        <br />
+	
+	        <p class="floatL">Want to Browse Location on Map by County?<br/>
+	        <button id="county" type="submit" class="obutton">Go to County View	</button></p>
+        
+	        <p class="floatR">Know the Latitude and Longitude?<br/>&nbsp;&nbsp;
+	        <button id="coords" type="submit" class="obutton">Go To Map Coordinates</button></p>
+
+            <p style="margin-top:200px;border:5px solid #212640"></p>
+
+                   
+	    </div>
+	    <div id="existing" >
+	        <button id="existingbtn" class="tbutton">Edit an Existing Tract</button>
+	    </div>
+        <br>
+    </div>
+
+    <div class="clear"></div>
+
+ 
+    <div class="ui-widget-overlay" style="width: 1600px; height: 1200px; z-index: 1001;"></div>
+    <div class="ui-dialog" tabindex="-1" role="dialog" 
+        aria-labelledby="ui-dialog-title-disclaimer" style="display: block; z-index: 1002; outline: 0px; position: absolute; 
+    height: auto; width: 900px; top: 326px; left: 232px;background-color:white;">
+        <div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" unselectable="on">
+            <span class="ui-dialog-title" id="ui-dialog-title-disclaimer" unselectable="on">Disclaimer</span>
+            <a href="#" class="ui-dialog-titlebar-close ui-corner-all" role="button" unselectable="on">
+                <span class="ui-icon ui-icon-closethick" unselectable="on">close</span></a></div>
+        <div id="disclaimer" class="justifyText ui-dialog-content ui-widget-content" style="width: auto; min-height: 96.1599998474121px; height: auto;">
+           
+   
+            <p style="font-size:1em">
+                The information contained herein is provided as a public service and is for NONCOMMERCIAL PURPOSES ONLY, with the understanding 
+                that the NC Forest Service make no warranties, either expressed or implied, concerning the accuracy, completeness, reliability, or 
+                suitability of the information. Nor does the NC Forest Service warrant that the use of this information is free of any claims of copyright 
+                infringement. THE INFORMATION IS BEING PROVIDED "AS IS" AND WITHOUT WARRANTY OF ANY KIND EITHER EXPRESS, IMPLIED OR STATUTORY, INCLUDING 
+                BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.</p><hr />
+            <p style="font-size:1em">Users also should note that property boundaries included in any product do not represent an on-the-ground survey suitable for legal, 
+                engineering, or surveying purposes. They represent only the approximate relative locations. By accessing this website and/or data 
+                contained within the databases, you hereby release the NC Forest Service, their employees, agents, contractors, and suppliers 
+                (collectively, “NCFS”) from any and all responsibility and liability associated with its use. In no event shall NCFS be liable for any 
+                damages arising in any way out of the use of the website, or use of the information contained in the databases herein including, but not
+                 limited to, the Forestry Preharvest Planning Tool products.</p><hr />
+             <p style="font-size:1em">The user assumes the entire risk related to their use of this information, including but not limited to the Forestry Preharvest 
+                 Planning Tool and either the published or derived products from these data. IN NO EVENT WILL NCFS BE LIABLE TO YOU OR TO ANY THIRD PARTY 
+                 FOR ANY DIRECT, INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL OR EXEMPLARY DAMAGES OR LOST PROFIT RESULTING FROM ANY USE OR MISUSE OF 
+                 THESE DATA, EVEN IF THE USER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+            </p>
+          </div>
+            <div class="checkbox-radio-wrapper">
+                <input id="chkDisclaimer" name="chkDisclaimer" onclick="setDisclaimerCookie()" type="checkbox" value="true" /><input name="chkDisclaimer" type="hidden" value="false" />
+                <label for="chkDisclaimer">Do not show again</label>
+            </div>
+
+   </div>
+
+
+
+       <script type="text/javascript" src='/NCDACS/ForestService/NcfsApps/Scripts/jquery.cookie.js' ></script>
+
+  
+  
+    <script type="text/javascript">
+        $(function () {
+
+       
+            $('#disclaimer').dialog({
+                autoOpen: false,
+                show: 'fade',
+                hide: 'fade',
+                modal: true,
+                width: 900,
+                maxHeight: 600,
+                maxWidth: 600
+            });
+
+          
+            // For debugging cookie
+            //$.cookie("showdisclaimer", "any_value", { expires: -1 });
+            //alert($.cookie('showdisclaimer'));
+
+            // If no cookie, then show disclaimer
+            if ($.cookie('showdisclaimer') == null || $.cookie('showdisclaimer') != "false") {
+                $('#disclaimer').dialog('open');
+            }
+
+        });
+
+        function setDisclaimerCookie() {
+            if ($('#chkDisclaimer').is(':checked')) {
+                $.cookie('showdisclaimer', 'false', { expires: 365 });
+                $('#disclaimer').dialog('close');
+            }
+        };
+
+
+        $(".close").live("click", function (e) {
+            e.preventDefault();
+            $(this).closest('#disclaimer').dialog("close");
+        });
+
+        $(".ui-widget-overlay").live("click", function () {
+            alert("t");
+            $("#test").dialog("close");
+        });
+
+       
+      
+    </script>
+
+</asp:Content>
+
+<asp:Content runat="server" ContentPlaceHolderID="scripts">
+
+    <script type="text/javascript">
+    	function showNewOp() {
+    	    document.getElementById("new").style.display = "none";
+    	    document.getElementById("new2").style.display = "block";
+    	    return false;
+    	}
+
+    	function hideOp() {
+    	    document.getElementById("new").style.display = "block";
+    	    document.getElementById("new2").style.display = "none";
+    	    return false;
+    	}
+
+    	$("#existingbtn").click(function () {
+    	    document.location = "Tracts.aspx";
+    	});
+
+    	$("#upload").click(function () {
+    	    document.location = "SearchUpload.aspx";
+    	});
+
+    	$("#place").click(function () {
+    	    document.location = "SearchPlaceName.aspx";
+    	});
+
+    	$("#owner").click(function () {
+    	    document.location = "SearchOwner.aspx";
+    	});
+
+    	$("#coords").click(function () {
+    	    document.location = "SearchCoords.aspx";
+    	});
+
+    	$("#county").click(function () {
+    	    document.location = "SearchCounty.aspx";
+    	});
+	</script>
+</asp:Content>
+

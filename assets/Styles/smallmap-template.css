@@ -1,0 +1,91 @@
+body {
+  /*mva - padding-top: 100px;*/
+}
+
+.main-container {
+	padding-top: 30px;
+    background-color: #fff;
+    padding-right: 20px;
+}
+
+.page-header {
+    color: #CECECE;
+}
+
+.forest-green {
+    padding-top: 60px;
+    color: inherit;
+    background-color: #6D764C;
+    color: #FFDA8C;
+}
+
+.ags-results {
+	line-height: 1;
+	font-size: small;
+	padding: 10px;
+}
+
+.ags-examples {
+	color:Blue;
+}
+
+.record {
+	background-color: white;
+	padding: 5px;
+}
+
+/* Extra small devices (phones, up to 480px) */
+@media (max-width: 480px) {
+    #mapDiv {
+        height: 400px;
+        width: 100%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    #mapDiv {
+        height: 400px;
+        width: 100%;
+    }
+}
+
+/* Small devices (tablets, 768px and up) - Portrait to Landscape */
+@media (min-width: 768px) {
+  #mapDiv {
+        height: 300px;
+        width: 300px;
+    }
+   
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    #mapDiv {
+        height: 400px;
+        width: 95%;
+    }
+    
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    #mapDiv {
+        height: 400px;
+        width: 95%;
+    }
+    
+}
+
+.ui-widget-content {
+    background-color: #fff;
+}
+
+
+.ui-dialog .ui-dialog-content {
+    background-color: #fff;
+    border: 0 none;
+    overflow: auto;
+    padding: 0.5em 1em;
+    position: relative;
+    z-index:999;
+}

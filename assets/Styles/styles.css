@@ -1,0 +1,99 @@
+﻿body {
+    background-color:#898989;
+}
+#content {
+    padding-top: 50px;
+    background-color:#898989;
+}
+.invisible {
+	visibility: hidden;
+	display: none;
+}
+.block { display: block; }
+.inline-block {
+	display: inline-block;
+    zoom: 1;
+    *display: inline;
+}
+.fill { width: 100%; }
+
+
+
+/* ************************************************************************** */
+/* Font Styles */
+.heading {
+	font-weight: bold;
+	text-align: left;
+	vertical-align: top;
+	padding-top: 0.5em;
+}
+.nowrap { white-space: nowrap; }
+.leftAlign { text-align: left; }
+.rightAlign { text-align: right; }
+.centered { text-align: center; }
+.italics { font-style: italic; }
+.bold { font-weight: bold; }
+
+/* ************************************************************************** */
+/* Data Entry Styles */
+.dataCommentsBox {
+	width: 30em;
+	height: 5em;
+}
+.dataNarrowCommentsBox {
+	width: 20em;
+	height: 5em;
+}
+.dataJumboCommentsBox {
+    width: 48em;
+    height: 12em;
+}
+.dataTinyField { width: 2em; }
+.dataExtraNarrowField { width: 3em; }
+.dataNarrowField { width: 7em; }
+.dataField { width: 10em; }
+.dataWideField { width: 15em; }
+.dataDoubleWideField { width: 30em; }
+.dataExtraWideField { width: 40em; }
+
+/* ************************************************************************** */
+/* Panel Styles */
+.formPanel { padding: 4px; }
+.panelHeader {
+	padding-left: 3px;
+	padding-right: 3px;
+	height: 1.5em;
+}
+.panelHeader .link-style { color: #ffffff; }
+.panelHeader .link-style:hover {
+    background: #5e83c2 url(Images/ui-bg_glass_100_f6f6f6_1x400.png) 50% 50% repeat-x; /* ui-state-default */
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 6px;
+}
+.panelHeader .link-style input { color: #ffffff; }
+.contentPanel { margin: 15px; }
+.contentPanelSpaced { margin: 22px 15px 15px 15px; }
+.panelBody {
+    padding: 5px 20px;
+}
+
+/* ************************************************************************** */
+/* Table Styles */
+.spacerRow { height: 5px; }
+
+
+
+
+
+/*Overrides for bread crumbs*/
+.breadcrumb{
+    background-color: #000066;
+}
+
+
+.breadcrumb li  {
+    color:#fff45c;
+}
+
+
